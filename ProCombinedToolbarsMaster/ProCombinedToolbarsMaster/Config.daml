@@ -1,0 +1,37 @@
+﻿<ArcGIS defaultAssembly="ProCombinedToolbarsMaster.dll" defaultNamespace="ProCombinedToolbarsMaster" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{265229e4-ac53-4818-9e25-8c0a730d6d04}" version="1.0" desktopVersion="3.3.52636" product="ArcGISPro">
+    <Name>ProCombinedToolbarsMaster</Name>
+    <Description>ProCombinedToolbarsMaster description</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>davidw</Author>
+    <Company>Acme</Company>
+    <Date>7/31/2024 8:29:06 AM</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+  <modules>
+    <insertModule id="ProCombinedToolbarsMaster_Module" className="Module1" autoLoad="false" caption="Module1">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <tab id="ProCombinedToolbarsMaster_Tab1" caption="Combine Master">
+          <group refID="ProCombinedToolbarsMaster_Group1"/>
+        </tab>
+      </tabs>
+      <groups>
+        <!-- comment this out if you have no controls on the Addin tab to avoid
+              an empty group-->
+        <group id="ProCombinedToolbarsMaster_Group1" caption="Master Group" appearsOnAddInTab="false">
+          <!-- host controls within groups -->
+          <button refID="ProCombinedToolbarsMaster_Button1" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="ProCombinedToolbarsMaster_Button1" caption="Button Mater" className="Button1" loadOnClick="true" smallImage="GenericButtonBlue16" largeImage="GenericButtonBlue32">
+          <tooltip heading="Tooltip Heading">Tooltip text<disabledText /></tooltip>
+        </button>
+      </controls>
+    </insertModule>
+  </modules>
+</ArcGIS>

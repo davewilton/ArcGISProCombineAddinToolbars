@@ -1,0 +1,68 @@
+﻿<ArcGIS defaultAssembly="ProCombinedToolbarsSecondary.dll" defaultNamespace="ProCombinedToolbarsSecondary" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{a5b30ea5-91f6-4d98-8ec5-195ae3d800c1}" version="1.0" desktopVersion="3.3.52636" product="ArcGISPro">
+    <Name>ProCombinedToolbarsSecondary</Name>
+    <Description>ProCombinedToolbarsSecondary description</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>davidw</Author>
+    <Company>Acme</Company>
+    <Date>7/31/2024 9:15:26 AM</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+	
+	<!--These are the items we need in order to add this addin to our master toolbar-->
+	<dependencies>
+		<!--Force it to load afterout master toolbar addin-->
+		<!-- don't worry it won't fail if it doesn't exist -->
+		<dependency name="{265229e4-ac53-4818-9e25-8c0a730d6d04}" />
+	</dependencies>
+
+	<conditions>
+		<insertCondition id="Is_Master_Installed_Installed_Condition">
+			<and>
+				<state id="Master_Not_Installed" />
+			</and>
+		</insertCondition>
+	</conditions>
+	<!--These are the items we need in order to add this addin to our master toolbar-->
+	
+  <modules>
+	  
+     <!--Auto load must be set to true!-->
+    <insertModule id="ProCombinedToolbarsSecondary_Module" className="Module1" autoLoad="true" caption="Module1">
+      <!-- This toolbar should have its own tab in case it is installed without the master 
+	       but we only show it if the master is not installed
+	  -->
+      <tabs>
+        <tab id="ProCombinedToolbarsSecondary_Tab1" caption="Combine Secondary" condition="Is_Master_Installed_Installed_Condition">
+          <group refID="ProCombinedToolbarsSecondary_Group1" />
+        </tab>
+      </tabs>
+      <groups>
+        
+        <group id="ProCombinedToolbarsSecondary_Group1" caption="Secondary Group" appearsOnAddInTab="false">
+          <!-- host controls within groups -->
+          <button refID="ProCombinedToolbarsSecondary_Button1" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="ProCombinedToolbarsSecondary_Button1" caption="Button Secondary" className="Button1" loadOnClick="true" smallImage="GenericButtonBlue16" largeImage="GenericButtonBlue32">
+          <tooltip heading="Tooltip Heading">Tooltip text<disabledText /></tooltip>
+        </button>
+      </controls>
+    </insertModule>
+
+	  <!--Now we add it to our master toolbar-->
+	  <updateModule refID="ProCombinedToolbarsMaster_Module">
+		  <tabs>
+			  <updateTab refID="ProCombinedToolbarsMaster_Tab1">
+				  <!--insert any groups from this addin-->
+				  <insertGroup refID="ProCombinedToolbarsSecondary_Group1" insert="after" />  
+			  </updateTab>
+		  </tabs>
+	  </updateModule>
+	  
+  </modules>
+</ArcGIS>
